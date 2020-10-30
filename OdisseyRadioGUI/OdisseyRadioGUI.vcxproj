@@ -126,6 +126,7 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="wavplayer.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player_GUI.h">
       <FileType>CppForm</FileType>

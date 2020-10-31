@@ -102,16 +102,16 @@ namespace OdisseyRadioGUI {
 			this->btnplay->TabIndex = 2;
 			this->btnplay->Text = L"Play";
 			this->btnplay->UseVisualStyleBackColor = true;
-			
 			// 
 			// btnload
 			// 
 			this->btnload->Location = System::Drawing::Point(36, 463);
 			this->btnload->Name = L"btnload";
-			this->btnload->Size = System::Drawing::Size(120, 23);
+			this->btnload->Size = System::Drawing::Size(120, 44);
 			this->btnload->TabIndex = 3;
 			this->btnload->Text = L"Load Library";
 			this->btnload->UseVisualStyleBackColor = true;
+			this->btnload->Click += gcnew System::EventHandler(this, &Player_GUI::btnload_Click);
 			// 
 			// labelTrackInfo
 			// 
@@ -167,7 +167,6 @@ namespace OdisseyRadioGUI {
 			this->labelLibrary->Size = System::Drawing::Size(52, 17);
 			this->labelLibrary->TabIndex = 10;
 			this->labelLibrary->Text = L"Library";
-			
 			// 
 			// Player_GUI
 			// 
@@ -195,5 +194,16 @@ namespace OdisseyRadioGUI {
 
 
 
+private: System::Void btnload_Click(System::Object^ sender, System::EventArgs^ e) {
+
+
+	
+	containerLibrary->Items->Add("hola");
+
+	containerLibrary->EndUpdate();
+
+	
+
+}
 };
 }

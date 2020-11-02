@@ -1,7 +1,8 @@
-#pragma once
+#include "pch.h"
 
 namespace OdisseyRadioGUI {
 
+	
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -14,6 +15,11 @@ namespace OdisseyRadioGUI {
 	/// </summary>
 	public ref class Player_GUI : public System::Windows::Forms::Form
 	{
+ 
+		
+	
+
+
 	public:
 		Player_GUI(void)
 		{
@@ -49,6 +55,7 @@ namespace OdisseyRadioGUI {
 	
 	private: System::Windows::Forms::Label^ labelTrackInfo;
 	private: System::Windows::Forms::Label^ labelLibrary;
+	private: System::Windows::Forms::OpenFileDialog^ openFileDialog1;
 
 
 	private:
@@ -74,6 +81,7 @@ namespace OdisseyRadioGUI {
 			this->btnpagination = (gcnew System::Windows::Forms::CheckBox());
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
 			this->labelLibrary = (gcnew System::Windows::Forms::Label());
+			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->SuspendLayout();
 			// 
 			// containerLibrary
@@ -168,6 +176,10 @@ namespace OdisseyRadioGUI {
 			this->labelLibrary->TabIndex = 10;
 			this->labelLibrary->Text = L"Library";
 			// 
+			// openFileDialog1
+			// 
+			this->openFileDialog1->FileName = L"openFileDialog1";
+			// 
 			// Player_GUI
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -197,10 +209,22 @@ namespace OdisseyRadioGUI {
 private: System::Void btnload_Click(System::Object^ sender, System::EventArgs^ e) {
 
 
-	
-	containerLibrary->Items->Add("hola");
+	openFileDialog1->InitialDirectory = "C:\\Users\\kevin\\Desktop";
+	openFileDialog1->Filter = "Archivos CVC (*.cvc)|*.cvc";
+	openFileDialog1->FilterIndex = 2;
 
-	containerLibrary->EndUpdate();
+	openFileDialog1->RestoreDirectory = true;
+
+	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+	{
+		String^ test = openFileDialog1->FileName;
+
+		containerLibrary->Items->Add(test);
+
+		containerLibrary->EndUpdate();
+	}
+
+	
 
 	
 

@@ -1,6 +1,5 @@
 #include <iostream>
 
-using namespace std;
 
 struct nodeList {
 
@@ -12,7 +11,7 @@ struct nodeList {
 
 
 
-class CVCLibrary {
+ref class CVCLibrary {
 
 
 
@@ -63,28 +62,26 @@ public:
 
 	}
 
-
+	
 	void findNode(int nodeID) {
 
 		nodeList* aux = firstNode;
 		
 		for (int i = 0; i < lengthList; i++) {
 			if (aux->nodeID == nodeID) {
-				cout << aux->nodeID << endl;
+				std::cout << aux->nodeID << std::endl;
 				//return aux;
 			}
 			else {
-				cout << aux->nodeID << endl;
+				std::cout << aux->nodeID << std::endl;
 				aux = aux->nodeNext;
 			}
 
 		}
-
+		
 		//return firstNode;
 
 	}
-
-
 
 
 

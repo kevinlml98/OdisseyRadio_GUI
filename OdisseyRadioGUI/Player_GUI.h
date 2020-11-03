@@ -203,7 +203,7 @@ namespace OdisseyRadioGUI {
 		}
 #pragma endregion
 	
-
+		private: CVCLibrary cvclibrary;
 
 
 private: System::Void btnload_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -212,15 +212,18 @@ private: System::Void btnload_Click(System::Object^ sender, System::EventArgs^ e
 	openFileDialog1->InitialDirectory = "C:\\Users\\kevin\\Desktop";
 	openFileDialog1->Filter = "Archivos CVC (*.cvc)|*.cvc";
 	openFileDialog1->FilterIndex = 2;
-
 	openFileDialog1->RestoreDirectory = true;
 
 	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
 	{
-		String^ test = openFileDialog1->FileName;
+		String^ ruta = openFileDialog1->FileName;
 
-		containerLibrary->Items->Add(test);
+		String^ title = openFileDialog1->SafeFileName;
+		
+		
+		cvclibrary.insertNode(ruta, title);
 
+		containerLibrary->Items->Add(title);
 		containerLibrary->EndUpdate();
 	}
 

@@ -1,12 +1,16 @@
+#pragma once
 #include <iostream>
+#include <string>
 
 
-struct nodeList {
+
+ref struct nodeList {
 
 	int nodeID;
-	char* nombre;
-
-	nodeList *nodeNext;
+	System::String^ nodeRuta;
+	System::String^ nodeTitle;
+	
+	nodeList^ nodeNext;
 };
 
 
@@ -17,8 +21,8 @@ ref class CVCLibrary {
 
 private:
 
-	nodeList *firstNode;
-	nodeList* lastNode;
+	nodeList^ firstNode;
+	nodeList^ lastNode;
 
 	int lengthList = 0;
 	
@@ -30,21 +34,28 @@ public:
 
 
 	}
+	~CVCLibrary() {
 
-	void insertNode() {
 
-		if (firstNode->nodeID != 0) {
-			firstNode = new nodeList();
+	}
+
+	void insertNode(System::String^ ruta, System::String^ title) {
+
+		if (firstNode == nullptr) {
+			firstNode = gcnew nodeList();
 			lastNode = firstNode;
 			
 			
 			lastNode->nodeID = lengthList;
+			lastNode->nodeRuta = ruta;
+			lastNode->nodeTitle = title;
 			lengthList++;
+			
 
 			
 		}
 		else {
-			nodeList* aux = new nodeList();
+			nodeList^ aux = gcnew nodeList();
 			lastNode->nodeNext = aux;
 			lastNode = aux;
 
@@ -65,12 +76,12 @@ public:
 	
 	void findNode(int nodeID) {
 
-		nodeList* aux = firstNode;
+		nodeList^ aux = firstNode;
 		
 		for (int i = 0; i < lengthList; i++) {
 			if (aux->nodeID == nodeID) {
 				std::cout << aux->nodeID << std::endl;
-				//return aux;
+				
 			}
 			else {
 				std::cout << aux->nodeID << std::endl;
@@ -79,7 +90,7 @@ public:
 
 		}
 		
-		//return firstNode;
+		
 
 	}
 

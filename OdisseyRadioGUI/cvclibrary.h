@@ -74,17 +74,16 @@ public:
 	}
 
 	
-	void findNode(int nodeID) {
+	void findNode(System::String^ title) {
 
 		nodeList^ aux = firstNode;
 		
 		for (int i = 0; i < lengthList; i++) {
-			if (aux->nodeID == nodeID) {
+			if (aux->nodeTitle == title) {
 				std::cout << aux->nodeID << std::endl;
 				
 			}
 			else {
-				std::cout << aux->nodeID << std::endl;
 				aux = aux->nodeNext;
 			}
 

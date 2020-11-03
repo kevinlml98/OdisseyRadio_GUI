@@ -92,6 +92,7 @@ namespace OdisseyRadioGUI {
 			this->containerLibrary->Name = L"containerLibrary";
 			this->containerLibrary->Size = System::Drawing::Size(177, 388);
 			this->containerLibrary->TabIndex = 0;
+			this->containerLibrary->SelectedIndexChanged += gcnew System::EventHandler(this, &Player_GUI::containerLibrary_SelectedIndexChanged);
 			// 
 			// containerPage
 			// 
@@ -217,7 +218,6 @@ private: System::Void btnload_Click(System::Object^ sender, System::EventArgs^ e
 	if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
 	{
 		String^ ruta = openFileDialog1->FileName;
-
 		String^ title = openFileDialog1->SafeFileName;
 		
 		
@@ -230,6 +230,16 @@ private: System::Void btnload_Click(System::Object^ sender, System::EventArgs^ e
 	
 
 	
+
+}
+private: System::Void containerLibrary_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+
+	String^ selectedItem = containerLibrary->SelectedItem->ToString();
+
+
+	labelLibrary->Text = selectedItem;
+
+
 
 }
 };

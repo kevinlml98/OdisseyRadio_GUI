@@ -84,7 +84,6 @@ public:
 				return aux->nodeRuta;
 			}
 			else {
-				std::cout << aux->nodeID << std::endl;
 				aux = aux->nodeNext;
 			}
 

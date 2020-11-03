@@ -236,8 +236,9 @@ private: System::Void containerLibrary_SelectedIndexChanged(System::Object^ send
 
 	String^ selectedItem = containerLibrary->SelectedItem->ToString();
 
+	String^ ruta = cvclibrary.findNode(selectedItem);
 
-	labelLibrary->Text = selectedItem;
+	labelLibrary->Text = ruta;
 
 
 

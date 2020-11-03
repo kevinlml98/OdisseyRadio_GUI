@@ -59,8 +59,9 @@ public:
 			lastNode->nodeNext = aux;
 			lastNode = aux;
 
-			
 			lastNode->nodeID = lengthList;
+			lastNode->nodeRuta = ruta;
+			lastNode->nodeTitle = title;
 			lengthList++;
 
 		}
@@ -74,22 +75,22 @@ public:
 	}
 
 	
-	void findNode(System::String^ title) {
+	System::String^ findNode(System::String^ title) {
 
 		nodeList^ aux = firstNode;
 		
 		for (int i = 0; i < lengthList; i++) {
 			if (aux->nodeTitle == title) {
-				std::cout << aux->nodeID << std::endl;
-				
+				return aux->nodeRuta;
 			}
 			else {
+				std::cout << aux->nodeID << std::endl;
 				aux = aux->nodeNext;
 			}
 
 		}
 		
-		
+		return "File does not exist";
 
 	}
 

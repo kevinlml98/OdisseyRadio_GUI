@@ -15,7 +15,7 @@ ref struct nodeList {
 
 
 
-ref class CVCLibrary {
+ref class CSVLibrary {
 
 
 
@@ -30,11 +30,11 @@ private:
 
 public:
 
-	CVCLibrary() {
+	CSVLibrary() {
 
 
 	}
-	~CVCLibrary() {
+	~CSVLibrary() {
 
 
 	}

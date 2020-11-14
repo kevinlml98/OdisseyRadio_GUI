@@ -7,8 +7,10 @@
 #ifndef PCH_H
 #define PCH_H
 
-#include "cvclibrary.h"
+#include "csvlibrary.h"
 #include "wavplayer.h"
+#include "tracklist.h"
+#include "csvreader.h"
 // add headers that you want to pre-compile here
 
-#endif //PCH_H
+#endif PCH_H

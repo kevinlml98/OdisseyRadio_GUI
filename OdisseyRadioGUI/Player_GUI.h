@@ -41,7 +41,7 @@ namespace OdisseyRadioGUI {
 			}
 		}
 	private: System::Windows::Forms::ListBox^ containerLibrary;
-	private: System::Windows::Forms::ListBox^ containerPage;
+
 	
 
 	private: System::Windows::Forms::Button^ btnplay;
@@ -56,6 +56,15 @@ namespace OdisseyRadioGUI {
 	private: System::Windows::Forms::Label^ labelTrackInfo;
 	private: System::Windows::Forms::Label^ labelLibrary;
 	private: System::Windows::Forms::OpenFileDialog^ openFileDialog1;
+	private: System::Windows::Forms::ListBox^ containerPage;
+
+
+
+
+
+
+
+
 
 
 	private:
@@ -72,7 +81,6 @@ namespace OdisseyRadioGUI {
 		void InitializeComponent(void)
 		{
 			this->containerLibrary = (gcnew System::Windows::Forms::ListBox());
-			this->containerPage = (gcnew System::Windows::Forms::ListBox());
 			this->btnplay = (gcnew System::Windows::Forms::Button());
 			this->btnload = (gcnew System::Windows::Forms::Button());
 			this->labelTrackInfo = (gcnew System::Windows::Forms::Label());
@@ -82,6 +90,7 @@ namespace OdisseyRadioGUI {
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
 			this->labelLibrary = (gcnew System::Windows::Forms::Label());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
+			this->containerPage = (gcnew System::Windows::Forms::ListBox());
 			this->SuspendLayout();
 			// 
 			// containerLibrary
@@ -94,15 +103,6 @@ namespace OdisseyRadioGUI {
 			this->containerLibrary->TabIndex = 0;
 			this->containerLibrary->SelectedIndexChanged += gcnew System::EventHandler(this, &Player_GUI::containerLibrary_SelectedIndexChanged);
 			// 
-			// containerPage
-			// 
-			this->containerPage->FormattingEnabled = true;
-			this->containerPage->ItemHeight = 16;
-			this->containerPage->Location = System::Drawing::Point(209, 12);
-			this->containerPage->Name = L"containerPage";
-			this->containerPage->Size = System::Drawing::Size(778, 324);
-			this->containerPage->TabIndex = 1;
-			// 
 			// btnplay
 			// 
 			this->btnplay->Location = System::Drawing::Point(860, 355);
@@ -111,6 +111,7 @@ namespace OdisseyRadioGUI {
 			this->btnplay->TabIndex = 2;
 			this->btnplay->Text = L"Play";
 			this->btnplay->UseVisualStyleBackColor = true;
+			this->btnplay->Click += gcnew System::EventHandler(this, &Player_GUI::btnplay_Click);
 			// 
 			// btnload
 			// 
@@ -181,11 +182,21 @@ namespace OdisseyRadioGUI {
 			// 
 			this->openFileDialog1->FileName = L"openFileDialog1";
 			// 
+			// containerPage
+			// 
+			this->containerPage->FormattingEnabled = true;
+			this->containerPage->ItemHeight = 16;
+			this->containerPage->Location = System::Drawing::Point(212, 24);
+			this->containerPage->Name = L"containerPage";
+			this->containerPage->Size = System::Drawing::Size(775, 308);
+			this->containerPage->TabIndex = 11;
+			// 
 			// Player_GUI
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1013, 519);
+			this->Controls->Add(this->containerPage);
 			this->Controls->Add(this->labelLibrary);
 			this->Controls->Add(this->progressBar1);
 			this->Controls->Add(this->btnpagination);
@@ -194,7 +205,6 @@ namespace OdisseyRadioGUI {
 			this->Controls->Add(this->labelTrackInfo);
 			this->Controls->Add(this->btnload);
 			this->Controls->Add(this->btnplay);
-			this->Controls->Add(this->containerPage);
 			this->Controls->Add(this->containerLibrary);
 			this->Name = L"Player_GUI";
 			this->Text = L"Odissey Radio";
@@ -204,14 +214,14 @@ namespace OdisseyRadioGUI {
 		}
 #pragma endregion
 	
-		private: CVCLibrary cvclibrary;
+		private: CSVLibrary csvlibrary;
 
 
 private: System::Void btnload_Click(System::Object^ sender, System::EventArgs^ e) {
 
 
 	openFileDialog1->InitialDirectory = "C:\\Users\\kevin\\Desktop";
-	openFileDialog1->Filter = "Archivos CVC (*.cvc)|*.cvc";
+	openFileDialog1->Filter = "Archivos CSV (*.csv)|*.csv";
 	openFileDialog1->FilterIndex = 2;
 	openFileDialog1->RestoreDirectory = true;
 
@@ -221,14 +231,14 @@ private: System::Void btnload_Click(System::Object^ sender, System::EventArgs^ e
 		String^ title = openFileDialog1->SafeFileName;
 		
 		
-		cvclibrary.insertNode(ruta, title);
+		csvlibrary.insertNode(ruta, title);
 
 		containerLibrary->Items->Add(title);
 		containerLibrary->EndUpdate();
 	}
 
 	
-
+	
 	
 
 }
@@ -236,10 +246,19 @@ private: System::Void containerLibrary_SelectedIndexChanged(System::Object^ send
 
 	String^ selectedItem = containerLibrary->SelectedItem->ToString();
 
-	String^ ruta = cvclibrary.findNode(selectedItem);
+	String^ ruta = csvlibrary.findNode(selectedItem);
 
 	labelLibrary->Text = ruta;
 
+
+
+}
+private: System::Void btnplay_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ selectedItem = containerLibrary->SelectedItem->ToString();
+
+	String^ ruta = csvlibrary.findNode(selectedItem);
+
+	labelTrackInfo->Text = ruta;
 
 
 }

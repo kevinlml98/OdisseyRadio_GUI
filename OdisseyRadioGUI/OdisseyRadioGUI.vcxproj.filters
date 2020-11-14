@@ -32,7 +32,13 @@
     <ClInclude Include="wavplayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cvclibrary.h">
+    <ClInclude Include="csvlibrary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tracklist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="csvreader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

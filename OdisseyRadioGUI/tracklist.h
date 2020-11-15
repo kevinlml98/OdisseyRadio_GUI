@@ -1,14 +1,20 @@
-#pragma once
+#include <exception>
+
+#using <system.dll>
+
+using namespace System;
+using namespace System::IO;
 
 
 
 ref struct nodeTrack {
 
 	int trackID;
-	System::String^ trackArtist;
-	System::String^ trackLength;
-	System::String^ trackGenre;
-	System::String^ trackTitle;
+	String^ trackArtist;
+	String^ trackLength;
+	String^ trackGenre;
+	String^ trackTitle;
+	String^ all;
 
 	nodeTrack^ nodeNext;
 };
@@ -30,8 +36,32 @@ private:
 
 public:
 
-	TrackList() {
+	TrackList(String^ fileName) {
+		
 
+
+		try
+		{
+			Console::WriteLine("trying to open file {0}...", fileName);
+			StreamReader^ din = File::OpenText(fileName);
+
+			String^ str;
+			int count = 0;
+
+			while ((str = din->ReadLine()) != nullptr)
+			{
+				count++;
+				Console::WriteLine("line {0}: {1}", count, str);
+				insertAll(str);
+			}
+		}
+		catch (Exception^ e)
+		{
+			if (dynamic_cast<FileNotFoundException^>(e))
+				Console::WriteLine("file '{0}' not found", fileName);
+			else
+				Console::WriteLine("problem reading file '{0}'", fileName);
+		}
 
 	}
 	~TrackList() {
@@ -39,7 +69,7 @@ public:
 
 	}
 
-	void insertNode(System::String^ artist, System::String^ title, System::String^ genre, System::String^ length) {
+	void insertTrack(String^ artist, String^ title, String^ genre,String^ length) {
 
 		if (firstNode == nullptr) {
 			firstNode = gcnew nodeTrack();
@@ -73,13 +103,45 @@ public:
 
 	}
 
+	void insertAll(String^ all) {
+
+
+		if (firstNode == nullptr) {
+			firstNode = gcnew nodeTrack();
+			lastNode = firstNode;
+			
+
+			lastNode->trackID = lengthList;
+			lastNode->all = all;
+			lengthList++;
+
+
+
+		}
+		else {
+			nodeTrack^ aux = gcnew nodeTrack();
+			lastNode->nodeNext = aux;
+			lastNode = aux;
+
+
+			lastNode->trackID = lengthList;
+			lastNode->all = all;
+			lengthList++;
+
+		}
+
+
+
+
+	}
+
 	void deleteTrack(int nodeID) {
 
 
 	}
 
 
-	System::String^ findTrack(System::String^ title) {
+	String^ findTrack(String^ title) {
 
 		nodeTrack^ aux = firstNode;
 

@@ -1,4 +1,5 @@
 #include "pch.h"
+#include <msclr\marshal_cppstd.h>
 
 namespace OdisseyRadioGUI {
 
@@ -215,6 +216,7 @@ namespace OdisseyRadioGUI {
 #pragma endregion
 	
 		private: CSVLibrary csvlibrary;
+		
 
 
 private: System::Void btnload_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -257,6 +259,23 @@ private: System::Void btnplay_Click(System::Object^ sender, System::EventArgs^ e
 	String^ selectedItem = containerLibrary->SelectedItem->ToString();
 
 	String^ ruta = csvlibrary.findNode(selectedItem);
+
+	/*
+	String^ str = "String:need:split;this";
+	array<wchar_t>^ id = { ':' ,';' };
+	array<String^>^ StringArray = str->Split(':');
+	array<String^>^ StringArray2 = str->Split(id);
+	for each (String ^ temp in StringArray)
+		Console::WriteLine(temp);
+	    Console::WriteLine();
+	for each (String ^ temp in StringArray2)
+		Console::WriteLine(temp);
+*/
+
+	TrackList tracklist("dataset_ejemplo.csv");
+	
+	
+	
 
 	labelTrackInfo->Text = ruta;
 

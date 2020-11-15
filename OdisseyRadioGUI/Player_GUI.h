@@ -272,7 +272,7 @@ private: System::Void btnplay_Click(System::Object^ sender, System::EventArgs^ e
 		Console::WriteLine(temp);
 */
 
-	TrackList tracklist("dataset_ejemplo.csv");
+	TrackList tracklist(ruta);
 	
 	
 	

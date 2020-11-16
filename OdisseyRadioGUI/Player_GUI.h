@@ -58,6 +58,8 @@ namespace OdisseyRadioGUI {
 	private: System::Windows::Forms::Label^ labelLibrary;
 	private: System::Windows::Forms::OpenFileDialog^ openFileDialog1;
 	private: System::Windows::Forms::ListBox^ containerPage;
+	private: System::Windows::Forms::Button^ btnshowtracks;
+
 
 
 
@@ -92,6 +94,7 @@ namespace OdisseyRadioGUI {
 			this->labelLibrary = (gcnew System::Windows::Forms::Label());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->containerPage = (gcnew System::Windows::Forms::ListBox());
+			this->btnshowtracks = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// containerLibrary
@@ -116,9 +119,9 @@ namespace OdisseyRadioGUI {
 			// 
 			// btnload
 			// 
-			this->btnload->Location = System::Drawing::Point(36, 463);
+			this->btnload->Location = System::Drawing::Point(12, 463);
 			this->btnload->Name = L"btnload";
-			this->btnload->Size = System::Drawing::Size(120, 44);
+			this->btnload->Size = System::Drawing::Size(81, 44);
 			this->btnload->TabIndex = 3;
 			this->btnload->Text = L"Load Library";
 			this->btnload->UseVisualStyleBackColor = true;
@@ -191,12 +194,24 @@ namespace OdisseyRadioGUI {
 			this->containerPage->Name = L"containerPage";
 			this->containerPage->Size = System::Drawing::Size(775, 308);
 			this->containerPage->TabIndex = 11;
+			this->containerPage->SelectedIndexChanged += gcnew System::EventHandler(this, &Player_GUI::containerPage_SelectedIndexChanged);
+			// 
+			// btnshowtracks
+			// 
+			this->btnshowtracks->Location = System::Drawing::Point(99, 463);
+			this->btnshowtracks->Name = L"btnshowtracks";
+			this->btnshowtracks->Size = System::Drawing::Size(90, 44);
+			this->btnshowtracks->TabIndex = 12;
+			this->btnshowtracks->Text = L"Show Tracks";
+			this->btnshowtracks->UseVisualStyleBackColor = true;
+			this->btnshowtracks->Click += gcnew System::EventHandler(this, &Player_GUI::btnshowtracks_Click);
 			// 
 			// Player_GUI
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1013, 519);
+			this->Controls->Add(this->btnshowtracks);
 			this->Controls->Add(this->containerPage);
 			this->Controls->Add(this->labelLibrary);
 			this->Controls->Add(this->progressBar1);
@@ -216,6 +231,7 @@ namespace OdisseyRadioGUI {
 #pragma endregion
 	
 		private: CSVLibrary csvlibrary;
+		private: TrackList tracklist;
 		
 
 
@@ -245,39 +261,67 @@ private: System::Void btnload_Click(System::Object^ sender, System::EventArgs^ e
 
 }
 private: System::Void containerLibrary_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+	try
+	{
+		String^ selectedItem = containerLibrary->SelectedItem->ToString();
 
-	String^ selectedItem = containerLibrary->SelectedItem->ToString();
+		String^ ruta = csvlibrary.findNode(selectedItem);
 
-	String^ ruta = csvlibrary.findNode(selectedItem);
+		labelLibrary->Text = ruta;
 
-	labelLibrary->Text = ruta;
+	}
+	catch (const std::exception&)
+	{
 
-
+	}
 
 }
-private: System::Void btnplay_Click(System::Object^ sender, System::EventArgs^ e) {
-	String^ selectedItem = containerLibrary->SelectedItem->ToString();
 
+
+
+private: System::Void btnshowtracks_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	String^ selectedItem = containerLibrary->SelectedItem->ToString();
 	String^ ruta = csvlibrary.findNode(selectedItem);
 
-	/*
-	String^ str = "String:need:split;this";
-	array<wchar_t>^ id = { ':' ,';' };
-	array<String^>^ StringArray = str->Split(':');
-	array<String^>^ StringArray2 = str->Split(id);
-	for each (String ^ temp in StringArray)
-		Console::WriteLine(temp);
-	    Console::WriteLine();
-	for each (String ^ temp in StringArray2)
-		Console::WriteLine(temp);
-*/
+	tracklist.deleteListTrack();
+	containerPage->Items->Clear();
 
-	TrackList tracklist(ruta);
+
+	tracklist.addDataset(ruta);
 	
+	for (int i = 0; i < tracklist.lengthList; i++) {
+		
+		containerPage->Items->Add(tracklist.findTrack(i));
+		containerPage->EndUpdate();
+	}
 	
+}
+
+
+
+
+private: System::Void btnplay_Click(System::Object^ sender, System::EventArgs^ e) {
+
 	
 
-	labelTrackInfo->Text = ruta;
+}
+
+
+
+private: System::Void containerPage_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+	try
+	{
+		String^ selectedItem = containerPage->SelectedItem->ToString();
+
+
+		labelTrackInfo->Text = selectedItem;
+
+	}
+	catch (const std::exception&)
+	{
+
+	}
 
 
 }

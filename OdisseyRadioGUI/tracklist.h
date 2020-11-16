@@ -27,16 +27,16 @@ ref class TrackList {
 
 private:
 
-	nodeTrack^ firstNode;
-	nodeTrack^ lastNode;
+		nodeTrack^ firstNode;
+		nodeTrack^ lastNode;
 
-	int lengthList = 0;
+public:	int lengthList = 0;
 
 
 
 public:
 
-	TrackList(String^ fileName) {
+	void addDataset(String^ fileName) {
 		
 
 
@@ -48,11 +48,10 @@ public:
 			String^ str;
 			int count = 0;
 
-			while ((str = din->ReadLine()) != nullptr)
-			{
+			while ((str = din->ReadLine()) != nullptr){
+			
+				insertAll(str, count);
 				count++;
-				Console::WriteLine("line {0}: {1}", count, str);
-				insertAll(str);
 			}
 		}
 		catch (Exception^ e)
@@ -64,6 +63,11 @@ public:
 		}
 
 	}
+
+	TrackList() {
+
+	}
+
 	~TrackList() {
 
 
@@ -103,7 +107,7 @@ public:
 
 	}
 
-	void insertAll(String^ all) {
+	void insertAll(String^ all, int count) {
 
 
 		if (firstNode == nullptr) {
@@ -111,11 +115,12 @@ public:
 			lastNode = firstNode;
 			
 
-			lastNode->trackID = lengthList;
+			lastNode->trackID = count;
 			lastNode->all = all;
 			lengthList++;
 
 
+			
 
 		}
 		else {
@@ -124,9 +129,10 @@ public:
 			lastNode = aux;
 
 
-			lastNode->trackID = lengthList;
+			lastNode->trackID = count;
 			lastNode->all = all;
 			lengthList++;
+			
 
 		}
 
@@ -135,21 +141,26 @@ public:
 
 	}
 
-	void deleteTrack(int nodeID) {
-
+	void deleteListTrack() {
+		lengthList = 0;
+		firstNode = nullptr;
 
 	}
 
 
-	String^ findTrack(String^ title) {
+	String^ findTrack(int count) {
+
+		
 
 		nodeTrack^ aux = firstNode;
 
 		for (int i = 0; i < lengthList; i++) {
-			if (aux->trackTitle == title) {
-				return aux->trackTitle;
+			if (aux->trackID == count) {
+				
+				return aux->all;
 			}
 			else {
+				
 				aux = aux->nodeNext;
 			}
 

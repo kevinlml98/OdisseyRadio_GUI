@@ -154,6 +154,7 @@ namespace OdisseyRadioGUI {
 			this->btninfo->TabIndex = 6;
 			this->btninfo->Text = L"Infomation";
 			this->btninfo->UseVisualStyleBackColor = true;
+			this->btninfo->Click += gcnew System::EventHandler(this, &Player_GUI::btninfo_Click);
 			// 
 			// btnpagination
 			// 
@@ -240,7 +241,7 @@ namespace OdisseyRadioGUI {
 private: System::Void btnload_Click(System::Object^ sender, System::EventArgs^ e) {
 
 
-	openFileDialog1->InitialDirectory = "C:\\Users\\kevin\\Desktop";
+	openFileDialog1->InitialDirectory = "C:\\Users\\kevin\\TEC\\Datos2\\Proyectos\\Proyecto1\\Codigo";
 	openFileDialog1->Filter = "Archivos CSV (*.csv)|*.csv";
 	openFileDialog1->FilterIndex = 2;
 	openFileDialog1->RestoreDirectory = true;
@@ -329,9 +330,9 @@ private: System::Void containerPage_SelectedIndexChanged(System::Object^ sender,
 	try
 	{
 		String^ selectedItem = containerPage->SelectedItem->ToString();
+		array<String^>^ StringArray = selectedItem->Split(',');
 
-
-		labelTrackInfo->Text = selectedItem;
+		labelTrackInfo->Text = StringArray[0];
 
 	}
 	catch (const std::exception&)
@@ -344,6 +345,13 @@ private: System::Void containerPage_SelectedIndexChanged(System::Object^ sender,
 private: System::Void btnstop_Click(System::Object^ sender, System::EventArgs^ e) {
 
 	wavplayer.stopMusic();
+}
+private: System::Void btninfo_Click(System::Object^ sender, System::EventArgs^ e) {
+	
+	String^ selectedItem = containerPage->SelectedItem->ToString();
+
+	Windows::Forms::MessageBox::Show(selectedItem);
+
 }
 };
 }

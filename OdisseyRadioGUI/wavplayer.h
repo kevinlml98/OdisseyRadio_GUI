@@ -1,4 +1,3 @@
-#include <iostream>
 #include <windows.h>
 #include <mmsystem.h>
 #include <conio.h>
@@ -6,12 +5,12 @@
 
 #pragma comment(lib, "winmm.lib")
 
-using namespace std;
-
 
 class WavPlayer {
+    
+
 private:
-    wstring default_sound = L"manowar.wav";
+    std::wstring default_sound = L"manowar.wav";
 
 
 public:
@@ -21,7 +20,7 @@ public:
 
     }
 
-    void playMusic(wstring cancion) {
+    void playMusic(std::wstring cancion) {
 
         LPCTSTR wcancion = cancion.c_str();
         PlaySound(wcancion, NULL, SND_FILENAME | SND_ASYNC);

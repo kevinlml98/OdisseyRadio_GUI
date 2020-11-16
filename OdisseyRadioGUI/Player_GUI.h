@@ -144,6 +144,7 @@ namespace OdisseyRadioGUI {
 			this->btnstop->TabIndex = 5;
 			this->btnstop->Text = L"Stop";
 			this->btnstop->UseVisualStyleBackColor = true;
+			this->btnstop->Click += gcnew System::EventHandler(this, &Player_GUI::btnstop_Click);
 			// 
 			// btninfo
 			// 
@@ -232,6 +233,7 @@ namespace OdisseyRadioGUI {
 	
 		private: CSVLibrary csvlibrary;
 		private: TrackList tracklist;
+		private: WavPlayer wavplayer;
 		
 
 
@@ -303,7 +305,21 @@ private: System::Void btnshowtracks_Click(System::Object^ sender, System::EventA
 
 private: System::Void btnplay_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	
+	String^ selectedItem = containerPage->SelectedItem->ToString();
+
+	array<String^>^ StringArray = selectedItem->Split(',');
+	try
+	{
+		String^ sound = "new_metadata\\" + StringArray[0];
+		wavplayer.playMusic(sound);
+		labelTrackInfo->Text = sound;
+	}
+	catch (const std::exception&)
+	{
+		Console::WriteLine("Error");
+	}
+
+
 
 }
 
@@ -324,6 +340,10 @@ private: System::Void containerPage_SelectedIndexChanged(System::Object^ sender,
 	}
 
 
+}
+private: System::Void btnstop_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	wavplayer.stopMusic();
 }
 };
 }

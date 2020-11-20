@@ -10,6 +10,9 @@ using namespace System;
 using namespace System::IO;
 using namespace msclr::interop;
 
+/// <summary>
+/// Funciona como reproductor de musica. Tiene la habilidad de reproducir y detener las canciones que sean seleccionadas
+/// </summary>
 ref class WavPlayer {
     
 
@@ -25,6 +28,10 @@ public:
 
     }
 
+    /// <summary>
+    /// Reproduce la cancion seleccionada
+    /// </summary>
+    /// <param name="track">Cancion a reproducir</param>
     void playMusic(String^ track) {
 
         marshal_context context;
@@ -35,6 +42,9 @@ public:
 
     }
 
+    /// <summary>
+    /// Detiene la cancion que esta siendo reproducida
+    /// </summary>
     void stopMusic() {
         PlaySound(NULL, NULL, SND_FILENAME | SND_ASYNC);
 

@@ -7,11 +7,17 @@ using namespace System;
 using namespace System::IO;
 
 
-
+/// <summary>
+/// Funciona como lector de archivos CSV
+/// </summary>
 ref class CSVReader {
 
 private:
 
+    /// <summary>
+    /// Abre y lee el archivo CSV seleccionado
+    /// </summary>
+    /// <param name="fileName">Archivo CSV a leer</param>
     void openCVSFile(String^ fileName)
     {
 

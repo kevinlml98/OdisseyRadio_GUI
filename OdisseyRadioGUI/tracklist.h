@@ -6,7 +6,9 @@ using namespace System;
 using namespace System::IO;
 
 
-
+/// <summary>
+/// Almacena las canciones en nodos
+/// </summary>
 ref struct nodeTrack {
 
 	int trackID;
@@ -20,7 +22,9 @@ ref struct nodeTrack {
 };
 
 
-
+/// <summary>
+/// Lista de canciones disponibles para reproducir
+/// </summary>
 ref class TrackList {
 
 
@@ -36,6 +40,10 @@ public:	int lengthList = 0;
 
 public:
 
+	/// <summary>
+	/// Lee el dataset y agrega las canciones en una lista
+	/// </summary>
+	/// <param name="fileName">Dataset que contiene los datos de las canciones que se añaden a la lista</param>
 	void addDataset(String^ fileName) {
 		
 
@@ -73,6 +81,13 @@ public:
 
 	}
 
+	/// <summary>
+	/// Inserta una cancion en la lista de reproduccion
+	/// </summary>
+	/// <param name="artist">Artista de la cancion</param>
+	/// <param name="title">Nombre de la cancion</param>
+	/// <param name="genre">Genero de la cancion</param>
+	/// <param name="length">Duracion de la cancion</param>
 	void insertTrack(String^ artist, String^ title, String^ genre,String^ length) {
 
 		if (firstNode == nullptr) {
@@ -107,6 +122,11 @@ public:
 
 	}
 
+	/// <summary>
+	/// Inserta todas las canciones del archivo de dataset a la lista
+	/// </summary>
+	/// <param name="all">CSV que contiene todas las canciones</param>
+	/// <param name="count">Cantidad de canciones en el CSV</param>
 	void insertAll(String^ all, int count) {
 
 
@@ -141,13 +161,20 @@ public:
 
 	}
 
+	/// <summary>
+	/// Borra una cancion de la lista
+	/// </summary>
 	void deleteListTrack() {
 		lengthList = 0;
 		firstNode = nullptr;
 
 	}
 
-
+	/// <summary>
+	/// Busca una cancion que esta en la lista
+	/// </summary>
+	/// <param name="count">Posicion de la cancion</param>
+	/// <returns>Cancion que se busca</returns>
 	String^ findTrack(int count) {
 
 		

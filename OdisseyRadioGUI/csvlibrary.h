@@ -3,7 +3,9 @@
 #include <string>
 
 
-
+/// <summary>
+/// Nodo de la lista de canciones
+/// </summary>
 ref struct nodeList {
 
 	int nodeID;
@@ -14,7 +16,9 @@ ref struct nodeList {
 };
 
 
-
+/// <summary>
+/// Almacena el dataset en una lista enlazada
+/// </summary>
 ref class CSVLibrary {
 
 
@@ -39,6 +43,11 @@ public:
 
 	}
 
+	/// <summary>
+	/// Agrega un nodo a la lista
+	/// </summary>
+	/// <param name="ruta">Lugar donde se inserta el nodo</param>
+	/// <param name="title">Nodo a insertar</param>
 	void insertNode(System::String^ ruta, System::String^ title) {
 
 		if (firstNode == nullptr) {
@@ -74,7 +83,11 @@ public:
 
 	}
 
-	
+	/// <summary>
+	/// Busca un nodo en la lista
+	/// </summary>
+	/// <param name="title">Titulo del nodo a buscar</param>
+	/// <returns>Nodo con el titulo que se indica</returns>
 	System::String^ findNode(System::String^ title) {
 
 		nodeList^ aux = firstNode;

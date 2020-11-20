@@ -6,7 +6,7 @@ using namespace System::Windows::Forms;
 [STAThread]
 
 int main(array<System::String^>^ args) {
-
+     //hola a todos
     Application::EnableVisualStyles();
     Application::SetCompatibleTextRenderingDefault(false);
     OdisseyRadioGUI::Player_GUI form;

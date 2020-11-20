@@ -126,6 +126,9 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="csvreader.h" />
+    <ClInclude Include="tracklist.h" />
+    <ClInclude Include="csvlibrary.h" />
     <ClInclude Include="wavplayer.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player_GUI.h">
@@ -159,6 +162,9 @@
     <EmbeddedResource Include="Player_GUI.resx">
       <DependentUpon>Player_GUI.h</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\..\..\..\Desktop\dataset_ejemplo.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

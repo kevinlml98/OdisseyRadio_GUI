@@ -1,17 +1,17 @@
-#include <iostream>
 #include <windows.h>
 #include <mmsystem.h>
 #include <conio.h>
 #include <string>
+#include <msclr\marshal.h>
 
 #pragma comment(lib, "winmm.lib")
 
-using namespace std;
+using namespace System;
+using namespace System::IO;
+using namespace msclr::interop;
 
-
-class WavPlayer {
-private:
-    wstring default_sound = L"manowar.wav";
+ref class WavPlayer {
+    
 
 
 public:
@@ -21,10 +21,17 @@ public:
 
     }
 
-    void playMusic(wstring cancion) {
+    ~WavPlayer() {
 
-        LPCTSTR wcancion = cancion.c_str();
-        PlaySound(wcancion, NULL, SND_FILENAME | SND_ASYNC);
+    }
+
+    void playMusic(String^ track) {
+
+        marshal_context context;
+        LPCTSTR wtrack = context.marshal_as<const TCHAR*>(track);
+
+        PlaySound(wtrack, NULL, SND_FILENAME | SND_ASYNC);
+
 
     }
 

@@ -32,6 +32,15 @@
     <ClInclude Include="wavplayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="csvlibrary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tracklist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="csvreader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OdisseyRadioGUI.cpp">
@@ -54,5 +63,10 @@
     <Image Include="app.ico">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\..\..\..\Desktop\dataset_ejemplo.csv">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

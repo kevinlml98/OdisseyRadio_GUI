@@ -241,7 +241,7 @@ namespace OdisseyRadioGUI {
 private: System::Void btnload_Click(System::Object^ sender, System::EventArgs^ e) {
 
 
-	openFileDialog1->InitialDirectory = "C:\\Users\\kevin\\TEC\\Datos2\\Proyectos\\Proyecto1\\Codigo";
+	openFileDialog1->InitialDirectory = "C:\\Users\\kevin\\TEC\\Datos2\\Proyectos\\Proyecto1";
 	openFileDialog1->Filter = "Archivos CSV (*.csv)|*.csv";
 	openFileDialog1->FilterIndex = 2;
 	openFileDialog1->RestoreDirectory = true;
@@ -264,19 +264,7 @@ private: System::Void btnload_Click(System::Object^ sender, System::EventArgs^ e
 
 }
 private: System::Void containerLibrary_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-	try
-	{
-		String^ selectedItem = containerLibrary->SelectedItem->ToString();
-
-		String^ ruta = csvlibrary.findNode(selectedItem);
-
-		labelLibrary->Text = ruta;
-
-	}
-	catch (const std::exception&)
-	{
-
-	}
+	
 
 }
 
